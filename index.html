@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для самой любимой</title>
+    <style>
+        :root {
+            --main-pink: #ff6b8b;
+            --light-pink: #ffb6c1;
+            --dark-pink: #d23669;
+            --soft-white: #fff9fb;
+            --text-color: #555;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--soft-white);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Анимация фона */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            animation: floating 15s linear infinite;
+            opacity: 0.7;
+            user-select: none;
+            font-size: clamp(12px, 3vw, 24px);
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.7;
+            }
+
+            90% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Шапка */
+        header {
+            background: linear-gradient(135deg, var(--main-pink), var(--dark-pink));
+            padding: 1.5rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .decoration-bar {
+            position: absolute;
+            width: 200%;
+            display: flex;
+            justify-content: space-around;
+            animation: moveElements 20s linear infinite;
+            font-size: clamp(16px, 4vw, 24px);
+            opacity: 0.3;
+        }
+
+        .top-decoration {
+            top: 10px;
+        }
+
+        .bottom-decoration {
+            bottom: 10px;
+        }
+
+        @keyframes moveElements {
+            0% {
+                transform: translateX(-50%);
+            }
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        h1 {
+            color: white;
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            color: white;
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Основное содержимое */
+        main {
+            max-width: 800px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+            width: 100%;
+        }
+
+        /* Секция с фото - ИСПРАВЛЕННЫЙ БЛОК */
+        .photo-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            padding: 0 0.5rem;
+        }
+
+        .photo-container {
+            position: relative;
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            aspect-ratio: 1/1;
+            margin: 0 auto 1.5rem;
+            min-width: 150px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: 0 10px 30px rgba(255, 105, 140, 0.2);
+            position: relative;
+            z-index: 1;
+            transition: transform 0.5s;
+            display: block;
+            background-color: #ffebee;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .kiss-frame {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .kiss-frame-item {
+            position: absolute;
+            font-size: clamp(16px, 4vw, 20px);
+            animation: rotateFrame 20s linear infinite;
+            transform-origin: center;
+            left: 50%;
+            top: 0;
+            margin-left: -10px;
+        }
+
+        @keyframes rotateFrame {
+            0% {
+                transform: rotate(0deg) translateX(110px) rotate(-0deg);
+            }
+
+            100% {
+                transform: rotate(360deg) translateX(110px) rotate(-360deg);
+            }
+        }
+
+        .love-text {
+            font-size: clamp(1rem, 4vw, 1.1rem);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 0.5rem;
+        }
+
+        /* Секция причин */
+        .reasons-section {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h2 {
+            color: var(--main-pink);
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: clamp(1.5rem, 5vw, 1.8rem);
+            font-weight: 500;
+        }
+
+        .reasons-list {
+            list-style: none;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 0 0.5rem;
+        }
+
+        .reasons-list li {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+            padding-left: 2rem;
+            font-size: clamp(0.9rem, 3.5vw, 1rem);
+        }
+
+        .reasons-list li:last-child {
+            border-bottom: none;
+        }
+
+        .reasons-list li::before {
+            content: "💋";
+            position: absolute;
+            left: 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Таймер отношений */
+        .timer-container {
+            background: linear-gradient(135deg, var(--light-pink), var(--main-pink));
+            padding: 1.2rem;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(255, 105, 140, 0.2);
+        }
+
+        .timer-title {
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            margin-bottom: 0.8rem;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-size: clamp(1rem, 3.5vw, 1.3rem);
+            font-weight: bold;
+        }
+
+        .timer-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 50px;
+            flex: 1;
+        }
+
+        .timer-value {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.5rem;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        .timer-label {
+            font-size: clamp(0.6rem, 2.5vw, 0.7rem);
+            margin-top: 0.2rem;
+            opacity: 0.9;
+        }
+
+        /* Подвал */
+        footer {
+            background: linear-gradient(135deg, var(--dark-pink), #a81c47);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 1.5rem;
+            position: relative;
+        }
+
+        .footer-message {
+            font-size: clamp(1.1rem, 4vw, 1.3rem);
+            margin-bottom: 1.2rem;
+        }
+
+        .love-btn {
+            background: white;
+            color: var(--dark-pink);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: clamp(0.9rem, 3.5vw, 1rem);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            min-width: 180px;
+        }
+
+        .love-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Всплывающее сообщение */
+        .love-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            text-align: center;
+            width: calc(100% - 2rem);
+            max-width: 300px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .love-popup.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .love-popup h3 {
+            color: var(--main-pink);
+            margin-bottom: 1rem;
+            font-size: clamp(1.3rem, 5vw, 1.5rem);
+        }
+
+        .love-popup p {
+            margin-bottom: 1.2rem;
+            font-size: clamp(1rem, 4vw, 1.1rem);
+        }
+
+        .popup-close {
+            background: var(--main-pink);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: clamp(0.9rem, 3.5vw, 1rem);
+        }
+
+        .popup-close:hover {
+            background: var(--dark-pink);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Конфетти */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: var(--main-pink);
+            opacity: 0;
+            z-index: 98;
+            animation: confetti 5s ease-in-out;
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Медиа-запросы для мобильных - НОВЫЕ СТИЛИ */
+        @media (max-width: 480px) {
+            .photo-container {
+                max-width: 200px;
+            }
+
+            .profile-photo {
+                border-width: 6px;
+            }
+
+            .kiss-frame {
+                top: -15px;
+                left: -15px;
+                right: -15px;
+                bottom: -15px;
+            }
+
+            .kiss-frame-item {
+                font-size: clamp(14px, 4vw, 18px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Анимированные элементы на фоне -->
+    <div class="floating-elements" id="floating-elements"></div>
+
+    <!-- Шапка -->
+    <header>
+        <div class="decoration-bar top-decoration">
+            ❤️💋❤️💋❤️💋❤️💋❤️💋❤️💋❤️💋❤️💋❤️💋❤️💋
+        </div>
+
+        <h1>Для самой любимой</h1>
+        <p class="subtitle">Ира - ты самое прекрасное, что есть в моей жизни</p>
+
+        <div class="decoration-bar bottom-decoration">
+            ❤️💋❤️💋❤️💋❤️💋❤️💋❤️💋❤️💋❤️💋❤️💋❤️💋
+        </div>
+    </header>
+
+    <!-- Основное содержимое -->
+    <main>
+        <!-- Секция с фото -->
+        <section class="photo-section">
+            <div class="photo-container">
+                <img src="img/image.jpg" alt="Самая красивая" class="profile-photo"
+                    onerror="this.onerror=null; this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\"
+                    http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"%3E%3Ccircle cx=\"50\" cy=\"50\" r=\"40\"
+                    fill=\"%23ff6b8b\" /%3E%3Ctext x=\"50\" y=\"55\" font-size=\"40\" text-anchor=\"middle\"
+                    fill=\"white\"%3E❤%3C/text%3E%3C/svg%3E'">
+                <div class="kiss-frame" id="kiss-frame"></div>
+            </div>
+
+            <div class="love-text">
+                Каждый раз, глядя на тебя, я понимаю, как мне повезло. Ты - воплощение всего самого прекрасного в этом
+                мире. Твоя улыбка освещает самые темные дни, твой смех - самая прекрасная мелодия.
+            </div>
+        </section>
+
+        <!-- Таймер отношений -->
+        <div class="timer-container">
+            <div class="timer-title">Мы вместе уже:</div>
+            <div class="timer" id="love-timer">
+                <div class="timer-unit">
+                    <div class="timer-value" id="years">0</div>
+                    <div class="timer-label">лет</div>
+                </div>
+                <div class="timer-unit">
+                    <div class="timer-value" id="months">0</div>
+                    <div class="timer-label">месяцев</div>
+                </div>
+                <div class="timer-unit">
+                    <div class="timer-value" id="days">0</div>
+                    <div class="timer-label">дней</div>
+                </div>
+                <div class="timer-unit">
+                    <div class="timer-value" id="hours">0</div>
+                    <div class="timer-label">часов</div>
+                </div>
+                <div class="timer-unit">
+                    <div class="timer-value" id="minutes">0</div>
+                    <div class="timer-label">минут</div>
+                </div>
+                <div class="timer-unit">
+                    <div class="timer-value" id="seconds">0</div>
+                    <div class="timer-label">секунд</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Секция причин -->
+        <section class="reasons-section">
+            <h2>Почему я люблю тебя</h2>
+
+            <ul class="reasons-list">
+                <li>Ты самая добрая и чуткая</li>
+                <li>Твой ум восхищает меня</li>
+                <li>Ты умеешь поддержать в любой ситуации</li>
+                <li>Твоя улыбка сводит меня с ума</li>
+                <li>Ты вдохновляешь меня каждый день</li>
+                <li>С тобой я чувствую себя счастливым</li>
+                <li>Ты понимаешь меня как никто другой</li>
+                <li>Твоя красота не имеет границ</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <p class="footer-message">Ты делаешь этот мир лучше просто тем, что в нем есть</p>
+        <button class="love-btn" id="love-btn">💖 Нажми и узнай</button>
+    </footer>
+
+    <!-- Всплывающее сообщение -->
+    <div class="love-popup" id="love-popup">
+        <h3>Я тебя люблю!</h3>
+        <p>Больше, чем можно выразить словами 💕</p>
+        <button class="popup-close" id="popup-close">Закрыть</button>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <script>
+        // Создаем плавающие элементы на фоне
+        function createFloatingElements() {
+            const container = document.getElementById('floating-elements');
+            const types = ['❤', '💋', '✨', '🥰'];
+
+            for (let i = 0; i < 20; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+                element.innerHTML = types[Math.floor(Math.random() * types.length)];
+                element.style.left = Math.random() * 100 + 'vw';
+                element.style.animationDelay = Math.random() * 15 + 's';
+                element.style.color = `hsl(${Math.random() * 60 + 330}, 100%, ${Math.random() * 30 + 60}%)`;
+                container.appendChild(element);
+            }
+        }
+
+        // Создаем рамку из поцелуев вокруг фото
+        function createKissFrame() {
+            const frame = document.getElementById('kiss-frame');
+            const kissCount = 12;
+            const radius = 'calc(50% + 20px)';
+
+            for (let i = 0; i < kissCount; i++) {
+                const angle = (i * (360 / kissCount));
+                const kiss = document.createElement('div');
+                kiss.classList.add('kiss-frame-item');
+                kiss.innerHTML = '💋';
+                kiss.style.transform = `rotate(${angle}deg) translate(${radius}) rotate(-${angle}deg)`;
+                kiss.style.color = `hsl(${Math.random() * 60 + 330}, 100%, ${Math.random() * 30 + 60}%)`;
+                frame.appendChild(kiss);
+            }
+        }
+
+        // Таймер отношений (обновленная версия с минутами и секундами)
+        function updateLoveTimer() {
+            // Установите дату начала отношений
+            const startDate = new Date('2024-04-21');
+            const now = new Date();
+
+            let diff = now - startDate;
+
+            // Вычисляем годы
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            diff -= years * (1000 * 60 * 60 * 24 * 365);
+
+            // Вычисляем месяцы
+            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
+            diff -= months * (1000 * 60 * 60 * 24 * 30);
+
+            // Вычисляем дни
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            diff -= days * (1000 * 60 * 60 * 24);
+
+            // Вычисляем часы
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            diff -= hours * (1000 * 60 * 60);
+
+            // Вычисляем минуты
+            const minutes = Math.floor(diff / (1000 * 60));
+            diff -= minutes * (1000 * 60);
+
+            // Вычисляем секунды
+            const seconds = Math.floor(diff / 1000);
+
+            // Обновляем значения на странице
+            document.getElementById('years').textContent = years;
+            document.getElementById('months').textContent = months;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+
+        // Создаем конфетти
+        function createConfetti() {
+            const colors = ['#ff6b8b', '#ffb6c1', '#ffccd5', '#ff8fab', '#fb6f92'];
+
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                confetti.style.animationDelay = (Math.random() * 0.5) + 's';
+                document.body.appendChild(confetti);
+
+                // Удаляем конфетти после анимации
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // Показываем всплывающее сообщение
+        document.getElementById('love-btn').addEventListener('click', function () {
+            document.getElementById('love-popup').classList.add('show');
+            document.getElementById('overlay').classList.add('show');
+            createConfetti();
+        });
+
+        // Закрываем всплывающее сообщение
+        document.getElementById('popup-close').addEventListener('click', function () {
+            document.getElementById('love-popup').classList.remove('show');
+            document.getElementById('overlay').classList.remove('show');
+        });
+
+        // Инициализация
+        window.onload = function () {
+            createFloatingElements();
+            createKissFrame();
+            updateLoveTimer();
+            setInterval(updateLoveTimer, 1000); // Обновляем каждую секунду
+        };
+
+        // Адаптация для мобильных устройств
+        function handleResize() {
+            const photoContainer = document.querySelector('.photo-container');
+            const frameItems = document.querySelectorAll('.kiss-frame-item');
+
+            if (window.innerWidth < 600) {
+                const radius = photoContainer.offsetWidth / 2 + 20;
+                frameItems.forEach(item => {
+                    item.style.transform = item.style.transform.replace(/translate\([^)]+\)/, `translate(${radius}px)`);
+                });
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+    </script>
+</body>
+
+</html>
